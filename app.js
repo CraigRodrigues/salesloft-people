@@ -1,5 +1,6 @@
 'use strict';
 
+const fs = require('fs');
 const axios = require('axios');
 axios.defaults.baseURL = 'https://api.salesloft.com/v2/people.json';
 axios.defaults.headers.common['Authorization'] = `Bearer ${process.env.SALES_LOFT_API_KEY}`;
@@ -25,8 +26,7 @@ async function fetchPeople() {
             return {
                 name: person.display_name,
                 email: person.email_address,
-                title: person.title,
-                herp: 'derp'
+                title: person.title
             }
         });
 
@@ -46,6 +46,7 @@ async function run() {
     const people = await fetchPeople();
 
     // Create People.json file in cache
+    fs.writeFileSync('cache/people.json', JSON.stringify(people, 0, 2))
 
     // Use people.json data to create a frequency map
 
