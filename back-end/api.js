@@ -2,6 +2,7 @@
 
 const PORT = process.env.PORT || '8080';
 const HOST = process.env.HOST || 'localhost.com';
+const path = require('path');
 const express = require('express');
 const morgan = require('morgan');
 const peopleRouter = require('./middleware/people');
@@ -13,6 +14,8 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(morgan('tiny'));
+
+app.use(express.static(path.resolve(__dirname, '../front-end/build')));
 
 // TODO: serve static react files
 app.get('/', (req, res) => {
