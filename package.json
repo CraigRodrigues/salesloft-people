@@ -4,7 +4,7 @@
   "description": "SalesLoft Backend",
   "main": "index.js",
   "scripts": {
-    "test": "t"
+    "test": "jest"
   },
   "author": "Craig Rodrigues",
   "license": "ISC",
@@ -27,6 +27,11 @@
       ],
       "prefer-const": 1
     }
+  },
+  "jest": {
+    "roots": ["<rootDir>"],
+    "testPathIgnorePatterns": ["/node_modules/"],
+    "modulePaths": ["/node_modules/"]
   },
   "devDependencies": {
     "eslint": "^7.31.0",
