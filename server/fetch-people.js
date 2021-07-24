@@ -1,4 +1,5 @@
 'use strict';
+const sortBy = require('lodash.sortby');
 const axios = require('axios');
 
 axios.defaults.baseURL = 'https://api.salesloft.com/v2/people.json';
@@ -36,7 +37,7 @@ async function fetchPeople() {
         // if_modified_since = response.headers.date;
     }
 
-    return results;
+    return sortBy(results, 'name');
 }
 
 module.exports = { fetchPeople };
