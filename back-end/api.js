@@ -9,26 +9,46 @@ const app = express();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(morgan('combined'));
+app.use(morgan('tiny'));
 
-// Create express app with three routes
+function sendError(e, res) {
+    console.error(e, res);
+    res.status(500).send('Internal server error');
+}
+
+// TODO: serve static react files
 app.get('/', (req, res) => {
     res.send('hello');
 });
 
 // GET for people
 app.get('/people.json', (req, res) => {
-    res.send('people');
+    try {
+        const people = require('./cache/people.json');
+        res.json({ date: people });
+    } catch (e) {
+        sendError(e, res);
+    }
 });
 
 // GET for frequency
 app.get('/frequency.json', (req, res) => {
-    res.send('frequency');
+    try {
+        const frequency = require('./cache/frequency.json');
+        res.json({ data: frequency });
+    } catch (e) {
+        sendError(e, res);
+    }
 });
 
 // GET for duplicates
 app.get('/duplicates.json', (req, res) => {
-    res.send('duplicates');
+    try {
+        const duplicates = require('./cache/duplicates.json');
+        res.json({ data: duplicates });
+    } catch (e) {
+        sendError(e, res);
+    }
 });
 
 app.listen(PORT, () => {
