@@ -15,7 +15,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(morgan('tiny'));
 
-app.use(express.static(path.resolve(__dirname, '../front-end/build')));
+app.use(express.static(path.resolve(__dirname, '../client/build')));
 
 // TODO: serve static react files
 app.get('/', (req, res) => {

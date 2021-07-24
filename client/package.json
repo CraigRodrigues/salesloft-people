@@ -1,5 +1,5 @@
 {
-  "name": "front-end",
+  "name": "SalesLoft App Client",
   "version": "0.1.0",
   "private": true,
   "proxy": "http://localhost:8080",
