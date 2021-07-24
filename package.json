@@ -30,9 +30,15 @@
     }
   },
   "jest": {
-    "roots": ["<rootDir>"],
-    "testPathIgnorePatterns": ["/node_modules/"],
-    "modulePaths": ["/node_modules/"]
+    "roots": [
+      "<rootDir>"
+    ],
+    "testPathIgnorePatterns": [
+      "/node_modules/"
+    ],
+    "modulePaths": [
+      "/node_modules/"
+    ]
   },
   "devDependencies": {
     "eslint": "^7.31.0",
