@@ -123,29 +123,62 @@ describe('findDuplicates', () => {
         }
     ];
 
+    const uniquePeople = [
+        {
+            name: 'SomethingNewHere Here1',
+            email: 'last@me.com',
+            title: 'Baby Yoda Keeper'
+        },
+        {
+            name: 'Something New Newer',
+            email: 'newemailisnew@menew.com',
+            title: 'My Job Is New'
+        },
+        { name: 'Testers Two', email: 'testt@gmail.com', title: 'Testing' },
+        {
+            name: 'Keagan Tromp',
+            email: 'raa_beetty@google.com',
+            title: 'Central Assurance Administrator'
+        },
+        {
+            name: 'Sheridan Bogisich',
+            email: 'erik@lubowitz.name',
+            title: 'Lead Applications Planner'
+        },
+        {
+            name: 'Mikel Reynolds',
+            email: 'george_aiegwnd@boyer.name',
+            title: 'Global Solutions Technician'
+        }
+    ];
+
     it('should find duplicates', () => {
         const actual = findDuplicates(duplicatePeople);
         const expected = [
-            {
-                name: 'Steven Pease',
-                email: 'sakatius@gmail.com',
-                title: 'Software Engineer'
-            },
-            {
-                name: 'Possibly Duplicate',
-                email: 'sakatiuss@gmail.com',
-                title: 'My Job'
-            },
-            {
-                name: 'Marisa Casper',
-                email: 'amixe@lindgren.info',
-                title: 'Direct Security Representative'
-            },
-            {
-                name: 'Griffin Hand',
-                email: 'mamixe@lindgren.info',
-                title: 'International Usability Agent'
-            }
+            [
+                {
+                    name: 'Steven Pease',
+                    email: 'sakatius@gmail.com',
+                    title: 'Software Engineer'
+                },
+                {
+                    name: 'Possibly Duplicate',
+                    email: 'sakatiuss@gmail.com',
+                    title: 'My Job'
+                }
+            ],
+            [
+                {
+                    name: 'Marisa Casper',
+                    email: 'amixe@lindgren.info',
+                    title: 'Direct Security Representative'
+                },
+                {
+                    name: 'Griffin Hand',
+                    email: 'mamixe@lindgren.info',
+                    title: 'International Usability Agent'
+                }
+            ]
         ];
 
         expect(actual).toEqual(expected);
