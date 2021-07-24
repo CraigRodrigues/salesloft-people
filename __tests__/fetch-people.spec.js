@@ -34,7 +34,11 @@ function makePagingResponses(num) {
 }
 
 describe('fetchPeople', () => {
-    it ('should page correctly', async () => {
+    afterEach(() => {
+        jest.clearAllMocks();
+    });
+
+    it('should page correctly', async () => {
         const responses = makePagingResponses(5);
 
         axios.get.mockResolvedValueOnce(responses[0]);
@@ -44,7 +48,8 @@ describe('fetchPeople', () => {
         axios.get.mockResolvedValueOnce(responses[4]);
 
         await fetchPeople();
-        expect(axios.get).toHaveBeenCalledTimes(6);
+
+        expect(axios.get).toHaveBeenCalledTimes(5);
     });
 
     it('should fetch people and map properties correctly', async () => {
@@ -69,53 +74,54 @@ describe('fetchPeople', () => {
         const actual = await fetchPeople();
         const expected = [
             {
-              name: 'Steven Pease',
-              email: 'sakatius@gmail.com',
-              title: 'Software Engineer'
+                name: 'Steven Pease',
+                email: 'sakatius@gmail.com',
+                title: 'Software Engineer'
             },
             {
-              name: 'Possibly Duplicate',
-              email: 'sakatiuss@gmail.com',
-              title: 'My Job'
+                name: 'Possibly Duplicate',
+                email: 'sakatiuss@gmail.com',
+                title: 'My Job'
             },
             {
-              name: 'SomethingNewHere Here1',
-              email: 'last@me.com',
-              title: 'Baby Yoda Keeper'
+                name: 'SomethingNewHere Here1',
+                email: 'last@me.com',
+                title: 'Baby Yoda Keeper'
             },
             {
-              name: 'Something New Newer',
-              email: 'newemailisnew@menew.com',
-              title: 'My Job Is New'
+                name: 'Something New Newer',
+                email: 'newemailisnew@menew.com',
+                title: 'My Job Is New'
             },
             { name: 'Testers Two', email: 'testt@gmail.com', title: 'Testing' },
             {
-              name: 'Keagan Tromp',
-              email: 'raa_beetty@google.com',
-              title: 'Central Assurance Administrator'
+                name: 'Keagan Tromp',
+                email: 'raa_beetty@google.com',
+                title: 'Central Assurance Administrator'
             },
             {
-              name: 'Sheridan Bogisich',
-              email: 'erik@lubowitz.name',
-              title: 'Lead Applications Planner'
+                name: 'Sheridan Bogisich',
+                email: 'erik@lubowitz.name',
+                title: 'Lead Applications Planner'
             },
             {
-              name: 'Marisa Casper',
-              email: 'amixe@lindgren.info',
-              title: 'Direct Security Representative'
+                name: 'Marisa Casper',
+                email: 'amixe@lindgren.info',
+                title: 'Direct Security Representative'
             },
             {
-              name: 'Griffin Hand',
-              email: 'mamixe@lindgren.info',
-              title: 'International Usability Agent'
+                name: 'Griffin Hand',
+                email: 'mamixe@lindgren.info',
+                title: 'International Usability Agent'
             },
             {
-              name: 'Mikel Reynolds',
-              email: 'george_aiegwnd@boyer.name',
-              title: 'Global Solutions Technician'
+                name: 'Mikel Reynolds',
+                email: 'george_aiegwnd@boyer.name',
+                title: 'Global Solutions Technician'
             }
         ];
 
         expect(actual).toEqual(expected);
+        expect(axios.get).toHaveBeenCalledTimes(1);
     });
 })
