@@ -7,9 +7,10 @@
     "test": "jest",
     "lint": "eslint --ext .js --ignore-path .gitignore .",
     "lint:fix": "eslint --fix --ext .js --ignore-path .gitignore .",
-    "start": "node app.js",
+    "start": "npm run start:cache && npm run start:server",
     "start:react": "node app.js",
-    "start:server": "node app.js"
+    "start:cache": "node app.js",
+    "start:server": "node api.js"
   },
   "author": "Craig Rodrigues",
   "license": "ISC",
@@ -60,6 +61,7 @@
   },
   "dependencies": {
     "axios": "^0.21.1",
+    "cron": "^1.8.2",
     "express": "^4.17.1",
     "morgan": "^1.10.0"
   }
