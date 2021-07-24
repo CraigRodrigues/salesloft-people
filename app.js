@@ -2,6 +2,7 @@
 
 const fs = require('fs');
 const axios = require('axios');
+const { findDuplicates } = require('./find-duplicates');
 
 axios.defaults.baseURL = 'https://api.salesloft.com/v2/people.json';
 axios.defaults.headers.common['Authorization'] = `Bearer ${process.env.SALES_LOFT_API_KEY}`;
@@ -58,10 +59,6 @@ function createFrequencyMap(people) {
     return map;
 }
 
-function findDuplicates(people) {
-    return people;
-}
-
 async function run() {
     // Fetch initial data from SalesLoft API
     const people = await fetchPeople();
@@ -92,4 +89,4 @@ async function run() {
 
 // run().catch(e => console.error(e));
 
-module.exports = { fetchPeople, createFrequencyMap, findDuplicates }
+module.exports = { fetchPeople, createFrequencyMap }
