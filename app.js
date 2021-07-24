@@ -37,20 +37,39 @@ async function fetchPeople() {
         // if_modified_since = response.headers.date;
     }
 
-    console.log(results);
     return results;
+}
+
+function createFrequencyMap(people) {
+    return people;
+}
+
+function findDuplicates(people) {
+    return people;
 }
 
 async function run() {
     // Fetch initial data from SalesLoft API
     const people = await fetchPeople();
+    console.log('People fetched: %j', results);
 
     // Create People.json file in cache
-    fs.writeFileSync('cache/people.json', JSON.stringify(people, 0, 2))
+    fs.writeFileSync('cache/people.json', JSON.stringify(people, 0, 2));
+    console.log('people.json cached');
 
     // Use people.json data to create a frequency map
+    const frequencyMap = createFrequencyMap(people);
+
+    console.log('Frequency map created: %j', frequencyMap);
+    fs.writeFileSync('cache/frequency.json', JSON.stringify(frequencyMap, 0, 2));
+    console.log('freqency.json cached');
 
     // Use people.json data to create a possible duplicates list
+    const duplicates = findDuplicates(people);
+
+    console.log('Potential duplicates found: %j', duplicates);
+    fs.writeFileSync('cache/duplicates.json', JSON.stringify(duplicates, 0, 2));
+    console.log('duplicates.json cached');
 
     // Begin cron job
 
@@ -59,4 +78,4 @@ async function run() {
 
 run();
 
-module.exports = { fetchPeople }
+module.exports = { fetchPeople, createFrequencyMap, findDuplicates }
