@@ -21,7 +21,18 @@
     "extends": [
       "react-app",
       "react-app/jest"
-    ]
+    ],
+    "rules": {
+      "indent": [
+        "error",
+        4
+      ],
+      "semi": [
+        2,
+        "always"
+      ],
+      "prefer-const": 1
+    }
   },
   "browserslist": {
     "production": [
