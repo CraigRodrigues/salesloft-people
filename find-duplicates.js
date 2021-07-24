@@ -44,15 +44,18 @@ function isDuplicate(a, b) {
 // attempts to find possible duplicate accounts via email
 function findDuplicates(people) {
     const duplicates = [];
+
+    if (!people || !Array.isArray(people) || !people.length) return duplicates;
+
     // iterate over all the people comparing one email to the all the rest after it
     for (let i = 0; i < people.length; i++) {
         const currentDuplicates = [];
         for (let j = i + 1; j < people.length; j++) {
             // check for at most one difference between the files
             // difference being one letter to add or remove or change
-            const isDuplicate = isDuplicate(people[i].email, people[j].email);
+            const duplicate = isDuplicate(people[i].email, people[j].email);
 
-            if (isDuplicate) {
+            if (duplicate) {
                 // if difference between remains at one at to an array of possible duplicates
                 if (!currentDuplicates.length) currentDuplicates.push(people[i]);
                 currentDuplicates.push(people[j]);
@@ -60,7 +63,7 @@ function findDuplicates(people) {
         }
 
         // continue through all the emails
-        duplicates.push(currentDuplicates);
+        if (currentDuplicates.length)  duplicates.push(currentDuplicates);
     }
 
     // return 2D array of duplicates
