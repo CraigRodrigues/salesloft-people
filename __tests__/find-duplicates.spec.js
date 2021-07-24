@@ -1,47 +1,45 @@
 'use strict';
 
-const { findDuplicates, isOneAway, differenceCount } = require('../find-duplicates.js');
+const { findDuplicates, isOneAway, isDuplicate } = require('../find-duplicates.js');
 
-describe('differenceCount', () => {
-    it('should return a difference of 1 with equal strings', () => {
-        const actual = '';
-        const expected = '';
+describe('isOneAway', () => {
+    it('should return a true with equal strings', () => {
+        const s1 = 'abcde@example.com';
+        const s2 = 'abcde@example.com';
 
-        expect(actual).toEqual(null);
+        const actual = isOneAway(s1, s2);
+        expect(actual).toBe(true);
     });
 
-    it('should return a difference of 1 with one removed character from emails', () => {
-        const actual = 'abcde@gmail.com';
-        const expected = 'abcd@gmail.com';
+    it('should return a true with one removed character from emails', () => {
+        const s1 = 'abcde@example.com';
+        const s2 = 'abcd@example.com';
 
-        expect(actual).toEqual(null);
+        const actual = isOneAway(s1, s2);
+        expect(actual).toEqual(true);
     });
 
-    it('should return a difference of 1 with one changed character from emails', () => {
-        const actual = 'abcde@gmail.com';
-        const expected = 'bbcde@gmail.com';
+    it('should return a true with one changed character from emails', () => {
+        const s1 = 'abcde@example.com';
+        const s2 = 'bbcde@example.com';
 
-        expect(actual).toEqual(null);
+        const actual = isOneAway(s1, s2);
+        expect(actual).toEqual(true);
     });
 
-    it('should return a difference of 2 with two removed character from emails', () => {
-        const actual = 'abcde@gmail.com';
-        const expected = 'abcd@gmail.co';
+    it.only('should return a false with two removed character from emails', () => {
+        const s1 = 'abcde@example.com';
+        const s2 = 'abcd@example.co';
 
-        expect(actual).toEqual(null);
+        const actual = isOneAway(s1, s2);
+        expect(actual).toEqual(false);
     });
 
-    it('should return a difference of 2 when emails are completely different', () => {
-        const actual = '12345@gmail.com';
-        const expected = 'abcde@gmail.com';
+    it('should return a false when emails are completely different', () => {
+        const s1 = '12345@example.com';
+        const s2 = 'abcde@example.com';
 
-        expect(actual).toEqual(null);
-    });
-
-    it('should return a difference of 2 when one email is empty or null', () => {
-        const actual = '';
-        const expected = 'abcde@gmail.com';
-
-        expect(actual).toEqual(null);
+        const actual = isOneAway(s1, s2);
+        expect(actual).toEqual(false);
     });
 })
