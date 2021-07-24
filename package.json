@@ -5,6 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
+    "lint": "eslint --ext .js --ignore-path .gitignore .",
+    "lint:fix": "eslint --fix --ext .js --ignore-path .gitignore .",
     "start": "node app.js"
   },
   "author": "Craig Rodrigues",
@@ -16,16 +18,16 @@
     },
     "env": {
       "es2021": true,
-      "node": true
+      "node": true,
+      "jest": true,
+      "commonjs": true
     },
     "plugins": [
       "jest"
     ],
     "rules": {
-      "indent": [
-        "error",
-        4
-      ],
+      "indent": ["error", 4],
+      "semi": [2, "always"],
       "prefer-const": 1
     }
   },

@@ -23,7 +23,7 @@ function makePagingResponses(num) {
         }
     };
 
-    const responses = new Array(num).fill('').map((r) => JSON.parse(JSON.stringify(response)));
+    const responses = new Array(num).fill('').map(() => JSON.parse(JSON.stringify(response)));
 
     responses.forEach((r, i) => {
         r.data.metadata.paging.current_page = i + 1;
@@ -124,4 +124,4 @@ describe('fetchPeople', () => {
         expect(actual).toEqual(expected);
         expect(axios.get).toHaveBeenCalledTimes(1);
     });
-})
+});

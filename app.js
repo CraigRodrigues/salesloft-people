@@ -29,7 +29,7 @@ async function fetchPeople() {
                 name: person.display_name,
                 email: person.email_address,
                 title: person.title
-            }
+            };
         });
 
         results = [...results, ...mappedResults];
@@ -89,4 +89,4 @@ async function run() {
 
 // run().catch(e => console.error(e));
 
-module.exports = { fetchPeople, createFrequencyMap }
+module.exports = { fetchPeople, createFrequencyMap };

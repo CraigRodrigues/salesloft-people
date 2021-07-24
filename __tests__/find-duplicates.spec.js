@@ -71,5 +71,4 @@ describe('isDuplicate', () => {
         expect(spy).not.toHaveBeenCalled();
         expect(actual).toBe(false);
     });
-
 });
