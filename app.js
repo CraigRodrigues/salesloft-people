@@ -90,4 +90,6 @@ async function run() {
     // Start api server
 }
 
+// run().catch(e => console.error(e));
+
 module.exports = { fetchPeople, createFrequencyMap, findDuplicates }

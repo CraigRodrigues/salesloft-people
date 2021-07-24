@@ -38,6 +38,9 @@
     ],
     "modulePaths": [
       "/node_modules/"
+    ],
+    "testMatch": [
+      "**/__tests__/*.spec.js"
     ]
   },
   "devDependencies": {
