@@ -1,13 +1,15 @@
 {
   "name": "salesloft-backend",
   "version": "1.0.0",
-  "description": "SalesLoft Backend",
+  "description": "SalesLoft People App",
   "main": "index.js",
   "scripts": {
     "test": "jest",
     "lint": "eslint --ext .js --ignore-path .gitignore .",
     "lint:fix": "eslint --fix --ext .js --ignore-path .gitignore .",
-    "start": "node app.js"
+    "start": "node app.js",
+    "start:react": "node app.js",
+    "start:server": "node app.js"
   },
   "author": "Craig Rodrigues",
   "license": "ISC",
