@@ -54,32 +54,32 @@ describe('createFrequencyMap', () => {
         ];
 
         const actual = createFrequencyMap(data);
-        const expected = {
-            "s": 8,
-            "a": 16,
-            "k": 3,
-            "t": 9,
-            "i": 16,
-            "u": 3,
-            "@": 10,
-            "g": 10,
-            "m": 17,
-            "l": 9,
-            ".": 10,
-            "c": 6,
-            "o": 13,
-            "e": 21,
-            "n": 12,
-            "w": 5,
-            "r": 6,
-            "_": 2,
-            "b": 3,
-            "y": 2,
-            "z": 1,
-            "x": 2,
-            "d": 3,
-            "f": 2
-        };
+        const expected = [
+            { character: 'e', count: 21 },
+            { character: 'm', count: 17 },
+            { character: 'a', count: 16 },
+            { character: 'i', count: 16 },
+            { character: 'o', count: 13 },
+            { character: 'n', count: 12 },
+            { character: '.', count: 10 },
+            { character: '@', count: 10 },
+            { character: 'g', count: 10 },
+            { character: 'l', count: 9 },
+            { character: 't', count: 9 },
+            { character: 's', count: 8 },
+            { character: 'c', count: 6 },
+            { character: 'r', count: 6 },
+            { character: 'w', count: 5 },
+            { character: 'b', count: 3 },
+            { character: 'd', count: 3 },
+            { character: 'k', count: 3 },
+            { character: 'u', count: 3 },
+            { character: '_', count: 2 },
+            { character: 'f', count: 2 },
+            { character: 'x', count: 2 },
+            { character: 'y', count: 2 },
+            { character: 'z', count: 1 }
+        ];
 
         expect(actual).toEqual(expected);
     });
