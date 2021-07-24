@@ -1,0 +1,22 @@
+{
+  "name": "salesloft-backend",
+  "version": "1.0.0",
+  "description": "SalesLoft Backend",
+  "main": "index.js",
+  "scripts": {
+    "test": "t"
+  },
+  "author": "Craig Rodrigues",
+  "license": "ISC",
+  "eslintConfig": {
+    "extends": "eslint:recommended"
+  },
+  "devDependencies": {
+    "eslint": "^7.31.0",
+    "jest": "^27.0.6"
+  },
+  "dependencies": {
+    "axios": "^0.21.1",
+    "express": "^4.17.1"
+  }
+}
