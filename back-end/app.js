@@ -33,4 +33,7 @@ async function run() {
     // Start api server
 }
 
-run().catch(e => console.error(e));
+run().catch(e => {
+    console.error(e);
+    process.exit(1);
+});
