@@ -1,6 +1,6 @@
 'use strict';
 
-const { createFrequencyMap } = require('../app');
+const { createFrequencyMap } = require('../create-frequency');
 
 describe('createFrequencyMap', () => {
     it('should properly create a map of all characters in emails returned', () => {

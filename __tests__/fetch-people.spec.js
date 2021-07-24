@@ -1,7 +1,7 @@
 'use strict';
 
 const axios = require('axios');
-const { fetchPeople } = require('../app');
+const { fetchPeople } = require('../fetch-people');
 const samplePeopleData = require('./data/sample-people-data.json');
 
 jest.mock('axios');
