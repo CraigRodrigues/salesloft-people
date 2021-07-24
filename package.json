@@ -17,13 +17,20 @@
       "es2021": true,
       "node": true
     },
+    "plugins": [
+      "jest"
+    ],
     "rules": {
-      "indent": ["error", 4],
+      "indent": [
+        "error",
+        4
+      ],
       "prefer-const": 1
     }
   },
   "devDependencies": {
     "eslint": "^7.31.0",
+    "eslint-plugin-jest": "^24.4.0",
     "jest": "^27.0.6"
   },
   "dependencies": {
