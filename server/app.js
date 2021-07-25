@@ -6,12 +6,12 @@ async function run() {
     await cacheData();
 
     // Begin CronJob
-    // const job = new CronJob('* * * * *', async () => {
-    //     console.log('Re-caching data');
-    //     await cacheData();
-    // }, null, true, 'America/New_York');
+    const job = new CronJob('30 * * * *', async () => {
+        console.log('Re-caching data');
+        await cacheData();
+    }, null, true, 'America/New_York');
 
-    // job.start();
+    job.start();
 }
 
 run().catch(e => {
