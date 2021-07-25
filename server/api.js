@@ -5,9 +5,9 @@ const HOST = process.env.HOST || 'localhost.com';
 const path = require('path');
 const express = require('express');
 const morgan = require('morgan');
-const peopleRouter = require('./middleware/people');
-const frequencyRouter = require('./middleware/frequency');
-const duplicatesRouter = require('./middleware/duplicates');
+const getPeople = require('./middleware/people');
+const getFrequency = require('./middleware/frequency');
+const getDuplicates = require('./middleware/duplicates');
 
 const app = express();
 
@@ -22,9 +22,10 @@ app.get('/', (req, res) => {
     res.send('hello');
 });
 
-app.get('/people.json', peopleRouter);
-app.get('/frequency.json', frequencyRouter);
-app.get('/duplicates.json', duplicatesRouter);
+app.get('/people.json', getPeople, );
+app.get('/frequency.json', getFrequency);
+app.get('/duplicates.json', getDuplicates);
+app.get('*', (req, res) => res.status(404).json({ 'message': 'Url not found' }));
 
 app.listen(PORT, () => {
     console.log(`Listening at ${HOST}:${PORT}`);
