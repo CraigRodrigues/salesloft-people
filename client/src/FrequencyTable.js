@@ -9,6 +9,15 @@ import {
   Td,
 } from '@chakra-ui/react';
 
+function FrequencyRow({ item }) {
+  return (
+    <Tr key={`${item.character}-${item.count}`}>
+      <Td>{item.character}</Td>
+      <Td>{item.count}</Td>
+    </Tr>
+  );
+}
+
 function FrequencyTable() {
   const [frequency, setFrequency] = useState([]);
 
@@ -30,25 +39,17 @@ function FrequencyTable() {
     }
   }, []);
 
-  const Row = ({ item, key }) => (
-        <Tr key={key}>
-            <Td>{item.name}</Td>
-            <Td>{item.title}</Td>
-            <Td>{item.email}</Td>
-        </Tr>
-    );
-
   return (
     <Table variant="simple" size="md">
-        <Thead>
-            <Tr>
-                <Th>Character</Th>
-                <Th>Count</Th>
-            </Tr>
-        </Thead>
-        <Tbody>
-            {frequency.map((item, i) => <Row key={i} item={item} />)}
-        </Tbody>
+      <Thead>
+          <Tr>
+            <Th>Character</Th>
+            <Th>Count</Th>
+          </Tr>
+      </Thead>
+      <Tbody>
+        {frequency.map((item) => <FrequencyRow item={item} />)}
+      </Tbody>
     </Table>
   );
 }
