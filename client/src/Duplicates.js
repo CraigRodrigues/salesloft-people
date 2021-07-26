@@ -3,39 +3,19 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import {
   Box,
-  Table,
-  Thead,
-  Tbody,
-  Tr,
-  Th,
-  Td,
-  Heading,
-  Container,
+  List,
+  ListItem,
+  Stack,
+  Progress,
+  Fade
 } from '@chakra-ui/react';
 
-function DuplicatesRow({ item }) {
+function Group({ group, index }) {
   return (
-    <Tr key={item.email}>
-      <Td>{item.name}</Td>
-      <Td>{item.email}</Td>
-    </Tr>
-  );
-}
-
-function DuplicatesTable({ index, group }) {
-  return (
-    <Box margin={4} borderWidth="2px" borderRadius="lg">
-      <Table variant="simple" size="md" key={index}>
-        <Thead>
-            <Tr>
-              <Th>Name</Th>
-              <Th>Email</Th>
-            </Tr>
-        </Thead>
-        <Tbody>
-          {group.map((item) => <DuplicatesRow item={item} />)}
-        </Tbody>
-      </Table>
+    <Box key={index} p={5} shadow="sm" borderWidth="1px" maxW="sm">
+      <List key={index} spacing={1}>
+        {group.map((item, i) => <ListItem key={i}>{`${item.name} - ${item.email}`}</ListItem>)}
+      </List>
     </Box>
   );
 };
@@ -61,11 +41,16 @@ function Duplicates() {
     }
   }, []);
 
+  if (!duplicates.length) {
+    return <Progress size="xs" isIndeterminate />
+  }
+
   return (
-    <Container>
-      <Heading as="h2" size="md">Possible Duplicates</Heading>
-      {duplicates.map((group, i) => <DuplicatesTable index={i} group={group} />)}
-    </Container>
+    <Fade in={duplicates.length}>
+      <Stack spacing={8}>
+        { duplicates.map((group, i) => <Group index={i} group={group} />) }
+      </Stack>
+    </Fade>
   );
 }
 
