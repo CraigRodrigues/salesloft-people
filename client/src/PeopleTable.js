@@ -7,6 +7,8 @@ import {
   Tr,
   Th,
   Td,
+  Progress,
+  Fade
 } from '@chakra-ui/react';
 
 function PeopleRow({ item }) {
@@ -40,19 +42,25 @@ function PeopleTable() {
     }
   }, []);
 
+  if (!people.length) {
+    return <Progress size="xs" isIndeterminate />
+  }
+
   return (
-    <Table variant="simple" size="md">
-        <Thead>
-          <Tr>
-            <Th>Name</Th>
-            <Th>Title</Th>
-            <Th>Email</Th>
-          </Tr>
-        </Thead>
-        <Tbody>
-          {people.map((item, i) => <PeopleRow key={i} item={item} />)}
-        </Tbody>
-    </Table>
+    <Fade in={people.length}>
+      <Table variant="simple" width="80%">
+          <Thead>
+            <Tr>
+              <Th>Name</Th>
+              <Th>Title</Th>
+              <Th>Email</Th>
+            </Tr>
+          </Thead>
+          <Tbody>
+            {people.map((item, i) => <PeopleRow key={i} item={item} />)}
+          </Tbody>
+      </Table>
+    </Fade>
   );
 }
 

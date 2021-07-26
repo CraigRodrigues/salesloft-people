@@ -7,6 +7,8 @@ import {
   Tr,
   Th,
   Td,
+  Progress,
+  Fade
 } from '@chakra-ui/react';
 
 function FrequencyRow({ item }) {
@@ -39,18 +41,24 @@ function FrequencyTable() {
     }
   }, []);
 
+  if (!frequency.length) {
+    return <Progress size="xs" isIndeterminate />
+  }
+
   return (
-    <Table variant="simple" size="md">
-      <Thead>
-          <Tr>
-            <Th>Character</Th>
-            <Th>Count</Th>
-          </Tr>
-      </Thead>
-      <Tbody>
-        {frequency.map((item) => <FrequencyRow item={item} />)}
-      </Tbody>
-    </Table>
+    <Fade in={frequency.length}>
+      <Table variant="simple" size="md" width="25%">
+        <Thead>
+            <Tr>
+              <Th>Character</Th>
+              <Th>Count</Th>
+            </Tr>
+        </Thead>
+        <Tbody>
+          {frequency.map((item) => <FrequencyRow item={item} />)}
+        </Tbody>
+      </Table>
+    </Fade>
   );
 }
 
