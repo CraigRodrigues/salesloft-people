@@ -1,20 +1,29 @@
 'use strict';
-const { CronJob } = require('cron');
-const cacheData = require('./cache-data');
 
-async function run() {
-    await cacheData();
+const PORT = process.env.PORT || '8080';
+const HOST = process.env.HOST || 'localhost.com';
+const path = require('path');
+const express = require('express');
+const morgan = require('morgan');
+const getPeople = require('./middleware/people');
+const getFrequency = require('./middleware/frequency');
+const getDuplicates = require('./middleware/duplicates');
 
-    // Begin CronJob
-    const job = new CronJob('30 * * * *', async () => {
-        console.log('Re-caching data');
-        await cacheData();
-    }, null, true, 'America/New_York');
+const app = express();
 
-    job.start();
-}
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+app.use(morgan('tiny'));
 
-run().catch(e => {
-    console.error(e);
-    process.exit(1);
+app.use(express.static(path.resolve(__dirname, '../client/build')));
+
+app.get('/people.json', getPeople, );
+app.get('/frequency.json', getFrequency);
+app.get('/duplicates.json', getDuplicates);
+app.get('*', (req, res) => res.status(404).json({ 'message': 'Url not found' }));
+
+app.listen(PORT, () => {
+    console.log(`Listening at ${HOST}:${PORT}`);
 });
+
+module.exports = app;
