@@ -1,12 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
   theme,
   ChakraProvider,
-  Container,
+  Box,
   Heading,
-  SimpleGrid,
-  ButtonGroup,
-  Button,
+  Tabs, TabList, TabPanels, Tab, TabPanel
 } from '@chakra-ui/react';
 
 import { ColorModeSwitcher } from './ColorModeSwitcher';
@@ -15,35 +13,31 @@ import FrequencyTable from './FrequencyTable';
 import Duplicates from './Duplicates';
 
 function App() {
-  const [filter, setFilter] = useState('people');
-
-  console.log(filter);
-
   return (
     <ChakraProvider theme={theme}>
-      <ColorModeSwitcher justifySelf="flex-end" />
-        <Container maxW="container.lg">
-          <SimpleGrid rows={3} spacing={10}>
-            <Heading as="h1" size="2xl">SalesLoft People</Heading>
-            <ButtonGroup varient="outline" spacing="6" align="center">
-              <Button colorScheme="blue" variant="outline" onClick={() => setFilter('people')}>
-                All People
-              </Button>
-              <Button colorScheme="blue" variant="outline" onClick={() => setFilter('frequency')}>
-                Character Frequency
-              </Button>
-              <Button colorScheme="blue" variant="outline" onClick={() => setFilter('duplicates')}>
-                Possible Duplicates
-              </Button>
-              <Button colorScheme="blue" variant="outline">
-                Refresh
-              </Button>
-            </ButtonGroup>
-            { filter === 'people' && <PeopleTable /> }
-            { filter === 'frequency' && <FrequencyTable /> }
-            { filter === 'duplicates' && <Duplicates /> }
-          </SimpleGrid>
-        </Container>
+      <Box>
+        <ColorModeSwitcher />
+        <Heading as="h1" size="2xl">SalesLoft People</Heading>
+      </Box>
+      <Tabs isLazy>
+        <TabList>
+          <Tab>All People</Tab>
+          <Tab>Character Frequency</Tab>
+          <Tab>Possible Duplicates</Tab>
+        </TabList>
+
+        <TabPanels>
+          <TabPanel>
+            <PeopleTable />
+          </TabPanel>
+          <TabPanel>
+            <FrequencyTable />
+          </TabPanel>
+          <TabPanel>
+            <Duplicates />
+          </TabPanel>
+        </TabPanels>
+      </Tabs>
     </ChakraProvider>
   );
 }
