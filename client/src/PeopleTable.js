@@ -9,6 +9,16 @@ import {
   Td,
 } from '@chakra-ui/react';
 
+function PeopleRow({ item }) {
+  return (
+    <Tr key={item.email}>
+      <Td>{item.name}</Td>
+      <Td>{item.title}</Td>
+      <Td>{item.email}</Td>
+    </Tr>
+  );
+}
+
 function PeopleTable() {
   const [people, setPeople] = useState([]);
 
@@ -30,27 +40,17 @@ function PeopleTable() {
     }
   }, []);
 
-  const peopleTable = people.map((person, i) => {
-    return (
-      <Tr key={i}>
-        <Td>{person.name}</Td>
-        <Td>{person.title}</Td>
-        <Td>{person.email}</Td>
-      </Tr>
-    );
-  });
-
   return (
     <Table variant="simple" size="md">
         <Thead>
-            <Tr>
+          <Tr>
             <Th>Name</Th>
             <Th>Title</Th>
             <Th>Email</Th>
-            </Tr>
+          </Tr>
         </Thead>
         <Tbody>
-            {peopleTable}
+          {people.map((item, i) => <PeopleRow key={i} item={item} />)}
         </Tbody>
     </Table>
   );
