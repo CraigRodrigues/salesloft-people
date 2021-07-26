@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import {
   theme,
   ChakraProvider,
-  Center,
+  Container,
   Heading,
   SimpleGrid,
   ButtonGroup,
@@ -12,7 +12,7 @@ import {
 import { ColorModeSwitcher } from './ColorModeSwitcher';
 import PeopleTable from './PeopleTable';
 import FrequencyTable from './FrequencyTable';
-import DuplicatesTable from './DuplicatesTable';
+import Duplicates from './Duplicates';
 
 function App() {
   const [filter, setFilter] = useState('people');
@@ -22,25 +22,28 @@ function App() {
   return (
     <ChakraProvider theme={theme}>
       <ColorModeSwitcher justifySelf="flex-end" />
-      <Heading as="h1">SalesLoft People App</Heading>
-      <Center w="90%">
-        <SimpleGrid rows={2} spacing={10}>
-          <ButtonGroup varient="outline" spacing="6" align="center">
-            <Button colorScheme="blue" variant="outline" onClick={() => setFilter('people')}>
-              All People
-            </Button>
-            <Button colorScheme="blue" variant="outline" onClick={() => setFilter('frequency')}>
-              Character Frequency
-            </Button>
-            <Button colorScheme="blue" variant="outline" onClick={() => setFilter('duplicates')}>
-              Possible Duplicates
-            </Button>
-          </ButtonGroup>
-          { filter === 'people' && <PeopleTable /> }
-          { filter === 'frequency' && <FrequencyTable /> }
-          { filter === 'duplicates' && <DuplicatesTable /> }
-        </SimpleGrid>
-      </Center>
+        <Container maxW="container.lg">
+          <SimpleGrid rows={3} spacing={10}>
+            <Heading as="h1" size="2xl">SalesLoft People</Heading>
+            <ButtonGroup varient="outline" spacing="6" align="center">
+              <Button colorScheme="blue" variant="outline" onClick={() => setFilter('people')}>
+                All People
+              </Button>
+              <Button colorScheme="blue" variant="outline" onClick={() => setFilter('frequency')}>
+                Character Frequency
+              </Button>
+              <Button colorScheme="blue" variant="outline" onClick={() => setFilter('duplicates')}>
+                Possible Duplicates
+              </Button>
+              <Button colorScheme="blue" variant="outline">
+                Refresh
+              </Button>
+            </ButtonGroup>
+            { filter === 'people' && <PeopleTable /> }
+            { filter === 'frequency' && <FrequencyTable /> }
+            { filter === 'duplicates' && <Duplicates /> }
+          </SimpleGrid>
+        </Container>
     </ChakraProvider>
   );
 }
